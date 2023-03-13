@@ -12,9 +12,7 @@ Game::Game(string playerName, int boardSize) : board(boardSize){
 }
 
 void Game::startGame() {
-    while(!board.isGameOver()){
 
-    }
 }
 
 int Game::getScore() {

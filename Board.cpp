@@ -100,68 +100,157 @@ int** Board::getEmptySquares() const {
     return emptySquares;
 }
 
-bool Board::checkCombine(int x, int y, Direction direction) {
+bool Board::checkCombine(int x, int y, Direction direction) const{
     switch(direction){
         case Direction::up:
-            return (board[x][y] == board[x][y+1]);
+            return (board[x][y] == board[x-1][y] && board[x][y] != 0);
         case Direction::right:
-            return (board[x][y] == board[x+1][y]);
+            return (board[x][y] == board[x][y+1] && board[x][y] != 0);
         case Direction::down:
-            return (board[x][y] == board[x][y-1]);
+            return (board[x][y] == board[x+1][y] && board[x][y] != 0);
         case Direction::left:
-            return (board[x][y] == board[x-1][y]);
+            return (board[x][y] == board[x][y-1] && board[x][y] != 0);
     }
 }
 
-int** Board::getPossibleMoves() const {
-    int numPossibleMoves = 0;
+vector<vector<int>> Board::getPossibleCombos() const {
+    vector<vector<int>> possibleCombos;
     for(int i=0; i<boardSize; i++){
         for(int j=0; j<boardSize; j++){
             // left side
-            if(i==0){
+            if(j==0){
                 // top left
-                if(j==0){
-                    //right
-                    
+                if(i==0){
+                    // right
+                    if(checkCombine(i,j, Direction::right)){
+                        possibleCombos.push_back({i, j, i,j+1});
+                    }
+                    // down
+                    if(checkCombine(i,j, Direction::down)){
+                        possibleCombos.push_back({i, j, i+1,j});
+                    }
 
                 }
                 // bottom left
-                else if(j==boardSize-1){
+                else if(i==boardSize-1){
                     // right
-                    if(board[i][j] == board[i+1][j]){
-
+                    if(checkCombine(i,j,Direction::right)){
+                        possibleCombos.push_back({i, j, i,j+1});
                     }
                     // up
-                    if(board[i][j] == board[i][j+1]){
-
+                    if(checkCombine(i,j,Direction::up)){
+                        possibleCombos.push_back({i, j, i-1,j});
                     }
                 }
                 // left side
                 else{
-
+                    // right
+                    if(checkCombine(i,j,Direction::right)){
+                        possibleCombos.push_back({i, j, i,j+1});
+                    }
+                    // up
+                    if(checkCombine(i,j,Direction::up)){
+                        possibleCombos.push_back({i, j, i-1,j});
+                    }
+                    // down
+                    if(checkCombine(i,j,Direction::down)){
+                        possibleCombos.push_back({i, j, i+1,j});
+                    }
                 }
             }
             // right side
-            else if(i==boardSize-1){
+            else if(j==boardSize-1){
                 // top right
-                if(j==0){
-
+                if(i==0){
+                    // left
+                    if(checkCombine(i,j,Direction::left)){
+                        possibleCombos.push_back({i, j, i,j-1});
+                    }
+                    // down
+                    if(checkCombine(i,j,Direction::down)){
+                        possibleCombos.push_back({i, j, i+1,j});
+                    }
                 }
                 // bottom right
-                else if(j==boardSize-1){
-
+                else if(i==boardSize-1){
+                    // up
+                    if(checkCombine(i,j,Direction::up)){
+                        possibleCombos.push_back({i, j, i-1,j});
+                    }
+                    // left
+                    if(checkCombine(i,j,Direction::left)){
+                        possibleCombos.push_back({i, j, i,j-1});
+                    }
                 }
                 // right side
                 else{
-
+                    // up
+                    if(checkCombine(i,j,Direction::up)){
+                        possibleCombos.push_back({i, j, i-1,j});
+                    }
+                    // down
+                    if(checkCombine(i,j,Direction::down)){
+                        possibleCombos.push_back({i, j, i+1,j});
+                    }
+                    // left
+                    if(checkCombine(i,j,Direction::left)){
+                        possibleCombos.push_back({i, j, i,j-1});
+                    }
                 }
             }
             // middle
             else{
-
+                // middle top
+                if(i==0){
+                    // down
+                    if(checkCombine(i,j,Direction::down)){
+                        possibleCombos.push_back({i, j, i+1,j});
+                    }
+                    // left
+                    if(checkCombine(i,j,Direction::left)){
+                        possibleCombos.push_back({i, j, i,j-1});
+                    }
+                    // right
+                    if(checkCombine(i,j,Direction::right)){
+                        possibleCombos.push_back({i, j, i,j+1});
+                    }
+                }
+                // middle bottom
+                else if(i==boardSize-1){
+                    // up
+                    if(checkCombine(i,j,Direction::up)){
+                        possibleCombos.push_back({i, j, i-1,j});
+                    }
+                    // left
+                    if(checkCombine(i,j,Direction::left)){
+                        possibleCombos.push_back({i, j, i,j-1});
+                    }
+                    // right
+                    if(checkCombine(i,j,Direction::right)){
+                        possibleCombos.push_back({i, j, i,j+1});
+                    }
+                } else{
+                    // up
+                    if(checkCombine(i,j,Direction::up)){
+                        possibleCombos.push_back({i, j, i-1,j});
+                    }
+                    // left
+                    if(checkCombine(i,j,Direction::left)){
+                        possibleCombos.push_back({i, j, i,j-1});
+                    }
+                    // right
+                    if(checkCombine(i,j,Direction::right)){
+                        possibleCombos.push_back({i, j, i,j+1});
+                    }
+                    // down
+                    if(checkCombine(i,j,Direction::down)){
+                        possibleCombos.push_back({i, j, i+1, j});
+                    }
+                }
             }
         }
     }
+    return possibleCombos;
 }
 
 void Board::printBoard() const {
@@ -175,4 +264,17 @@ void Board::printBoard() const {
 
 int Board::getBoardSize() {
     return boardSize;
+}
+
+void Board::setBoard() {
+//    for(int i=0; i<boardSize; i++){
+//        for(int j=0; j<boardSize; j++){
+//            board[i][j] = newBoard[i][j];
+//        }
+//    }
+
+    board[0][0] = 2;
+    board[0][1] = 2;
+    board[1][1] = 2;
+    board[1][2] = 2;
 }

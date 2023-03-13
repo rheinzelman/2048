@@ -20,16 +20,20 @@ public:
     int generateTileValue();
     std::vector<int> generateTilePos();
     bool makeMove(Direction direction);
-    bool checkCombine(int x, int y, Direction direction);
+    bool checkCombine(int x, int y, Direction direction) const;
     int** getEmptySquares() const;
-    int** getPossibleMoves() const;
+    std::vector<std::vector<int>> getPossibleCombos() const;
     void printBoard() const;
+
+    //dev
+    void setBoard();
 
     int getBoardSize();
 
+    int** board;
+
 private:
     int BOARD_SIZE;
-    int** board;
     int boardSize;
     int score;
     int moveCount;
