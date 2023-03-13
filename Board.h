@@ -20,15 +20,10 @@ public:
     int generateTileValue();
     std::vector<int> generateTilePos();
     bool makeMove(Direction direction);
-    bool isGameOver(int** emptySquares) const;
+    bool checkCombine(int x, int y, Direction direction);
     int** getEmptySquares() const;
+    int** getPossibleMoves() const;
     void printBoard() const;
-
-    int getScore();
-    void addScore(int additionalScore);
-
-    int getMoveCount();
-    void addMoveCount();
 
     int getBoardSize();
 

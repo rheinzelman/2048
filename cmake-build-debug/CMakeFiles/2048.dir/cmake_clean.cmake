@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "2048.exe.manifest"
   "2048.pdb"
   "CMakeFiles/2048.dir/Board.cpp.obj"
+  "CMakeFiles/2048.dir/Game.cpp.obj"
   "CMakeFiles/2048.dir/main.cpp.obj"
   "lib2048.dll.a"
 )

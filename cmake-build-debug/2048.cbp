@@ -86,6 +86,12 @@
 		<Unit filename="C:/Users/Ray/CLionProjects/2048/Board.h">
 			<Option target="2048"/>
 		</Unit>
+		<Unit filename="C:/Users/Ray/CLionProjects/2048/Game.cpp">
+			<Option target="2048"/>
+		</Unit>
+		<Unit filename="C:/Users/Ray/CLionProjects/2048/Game.h">
+			<Option target="2048"/>
+		</Unit>
 		<Unit filename="C:/Users/Ray/CLionProjects/2048/main.cpp">
 			<Option target="2048"/>
 		</Unit>

@@ -4,6 +4,11 @@
 CMakeFiles/2048.dir/Board.cpp.obj
  C:/Users/Ray/CLionProjects/2048/Board.cpp
  C:/Users/Ray/CLionProjects/2048/Board.h
+CMakeFiles/2048.dir/Game.cpp.obj
+ C:/Users/Ray/CLionProjects/2048/Board.h
+ C:/Users/Ray/CLionProjects/2048/Game.cpp
+ C:/Users/Ray/CLionProjects/2048/Game.h
 CMakeFiles/2048.dir/main.cpp.obj
  C:/Users/Ray/CLionProjects/2048/Board.h
+ C:/Users/Ray/CLionProjects/2048/Game.h
  C:/Users/Ray/CLionProjects/2048/main.cpp

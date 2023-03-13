@@ -169,6 +169,33 @@ Board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\2048.dir\build.make CMakeFiles/2048.dir/Board.cpp.s
 .PHONY : Board.cpp.s
 
+Game.obj: Game.cpp.obj
+
+.PHONY : Game.obj
+
+# target to build an object file
+Game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\2048.dir\build.make CMakeFiles/2048.dir/Game.cpp.obj
+.PHONY : Game.cpp.obj
+
+Game.i: Game.cpp.i
+
+.PHONY : Game.i
+
+# target to preprocess a source file
+Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\2048.dir\build.make CMakeFiles/2048.dir/Game.cpp.i
+.PHONY : Game.cpp.i
+
+Game.s: Game.cpp.s
+
+.PHONY : Game.s
+
+# target to generate assembly for a file
+Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\2048.dir\build.make CMakeFiles/2048.dir/Game.cpp.s
+.PHONY : Game.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -208,6 +235,9 @@ help:
 	@echo ... Board.obj
 	@echo ... Board.i
 	@echo ... Board.s
+	@echo ... Game.obj
+	@echo ... Game.i
+	@echo ... Game.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

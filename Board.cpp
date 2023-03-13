@@ -62,15 +62,10 @@ bool Board::makeMove(Direction direction) {
             break;
     }
     int** emptySquares = getEmptySquares();
+    return true;
 }
 
-bool Board::isGameOver(int** emptySquares) const {
-    if(sizeof(emptySquares) == 0){
-        return true;
-    } else{
-        return false;
-    }
-}
+
 
 vector<int> Board::generateTilePos() {
     vector<int> rPos;
@@ -105,6 +100,70 @@ int** Board::getEmptySquares() const {
     return emptySquares;
 }
 
+bool Board::checkCombine(int x, int y, Direction direction) {
+    switch(direction){
+        case Direction::up:
+            return (board[x][y] == board[x][y+1]);
+        case Direction::right:
+            return (board[x][y] == board[x+1][y]);
+        case Direction::down:
+            return (board[x][y] == board[x][y-1]);
+        case Direction::left:
+            return (board[x][y] == board[x-1][y]);
+    }
+}
+
+int** Board::getPossibleMoves() const {
+    int numPossibleMoves = 0;
+    for(int i=0; i<boardSize; i++){
+        for(int j=0; j<boardSize; j++){
+            // left side
+            if(i==0){
+                // top left
+                if(j==0){
+                    //right
+                    
+
+                }
+                // bottom left
+                else if(j==boardSize-1){
+                    // right
+                    if(board[i][j] == board[i+1][j]){
+
+                    }
+                    // up
+                    if(board[i][j] == board[i][j+1]){
+
+                    }
+                }
+                // left side
+                else{
+
+                }
+            }
+            // right side
+            else if(i==boardSize-1){
+                // top right
+                if(j==0){
+
+                }
+                // bottom right
+                else if(j==boardSize-1){
+
+                }
+                // right side
+                else{
+
+                }
+            }
+            // middle
+            else{
+
+            }
+        }
+    }
+}
+
 void Board::printBoard() const {
     for(int i=0; i < boardSize; i++){
         for(int j=0; j < boardSize; j++){
@@ -112,22 +171,6 @@ void Board::printBoard() const {
         }
         cout << endl;
     }
-}
-
-int Board::getScore(){
-   return score;
-}
-
-void Board::addScore(int additionalScore) {
-    score += additionalScore;
-}
-
-int Board::getMoveCount() {
-    return moveCount;
-}
-
-void Board::addMoveCount() {
-    moveCount++;
 }
 
 int Board::getBoardSize() {
