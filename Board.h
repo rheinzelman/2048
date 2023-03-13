@@ -20,7 +20,7 @@ public:
     int generateTileValue();
     std::vector<int> generateTilePos();
     bool makeMove(Direction direction);
-    bool isGameOver() const;
+    bool isGameOver(int** emptySquares) const;
     int** getEmptySquares() const;
     void printBoard() const;
 
@@ -29,6 +29,8 @@ public:
 
     int getMoveCount();
     void addMoveCount();
+
+    int getBoardSize();
 
 private:
     int BOARD_SIZE;

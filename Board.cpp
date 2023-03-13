@@ -49,6 +49,29 @@ int Board::generateTileValue() {
     }
 }
 
+bool Board::makeMove(Direction direction) {
+    int** emptySquaresPre = getEmptySquares();
+    switch(direction){
+        case Direction::up:
+            break;
+        case Direction::right:
+            break;
+        case Direction::down:
+            break;
+        case Direction::left:
+            break;
+    }
+    int** emptySquares = getEmptySquares();
+}
+
+bool Board::isGameOver(int** emptySquares) const {
+    if(sizeof(emptySquares) == 0){
+        return true;
+    } else{
+        return false;
+    }
+}
+
 vector<int> Board::generateTilePos() {
     vector<int> rPos;
     rPos.push_back(rand() % boardSize);
@@ -57,12 +80,29 @@ vector<int> Board::generateTilePos() {
 }
 
 int** Board::getEmptySquares() const {
-
-//    for(int i=0; i < boardSize; i++){
-//        for(int j=0; j < boardSize; j++){
-//            if
-//        }
-//    }
+    int numEmptySquares = 0;
+    for(int i=0; i < boardSize; i++){
+        for(int j=0; j < boardSize; j++){
+            if(board[i][j] == 0){
+                numEmptySquares++;
+            }
+        }
+    }
+    int** emptySquares = new int*[numEmptySquares];
+    for(int i=0; i < numEmptySquares; i++){
+        emptySquares[i] = new int[2];
+    }
+    int emptySquaresIterator = 0;
+    for(int i=0; i < boardSize; i++){
+        for(int j=0; j < boardSize; j++){
+            if(board[i][j] == 0){
+                emptySquares[emptySquaresIterator][0] = i;
+                emptySquares[emptySquaresIterator][1] = j;
+                emptySquaresIterator++;
+            }
+        }
+    }
+    return emptySquares;
 }
 
 void Board::printBoard() const {
@@ -88,4 +128,8 @@ int Board::getMoveCount() {
 
 void Board::addMoveCount() {
     moveCount++;
+}
+
+int Board::getBoardSize() {
+    return boardSize;
 }
