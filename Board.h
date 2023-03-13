@@ -12,6 +12,9 @@ public:
     Board(int dimensions);
     ~Board();
 
+    void initBoard();
+    int generateTileValue();
+    int* generateTilePos();
     bool makeMove(Direction direction);
     bool isGameOver() const;
     void printBoard() const;
@@ -28,8 +31,7 @@ private:
     int boardSize;
     int score;
     int moveCount;
-
-
+    int tileGenProbability; // number between 1-100 used to determine likelihood of spawning a 4
 };
 
 
