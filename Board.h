@@ -30,9 +30,8 @@ public:
 
     int getBoardSize();
 
-    int** board;
-
 private:
+    int** board;
     int BOARD_SIZE;
     int boardSize;
     int score;
