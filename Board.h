@@ -5,6 +5,10 @@
 #ifndef INC_2048_BOARD_H
 #define INC_2048_BOARD_H
 
+#include <iostream>
+#include <tuple>
+#include <vector>
+
 enum Direction {up, right, down, left};
 
 class Board {
@@ -14,9 +18,10 @@ public:
 
     void initBoard();
     int generateTileValue();
-    int* generateTilePos();
+    std::vector<int> generateTilePos();
     bool makeMove(Direction direction);
     bool isGameOver() const;
+    int** getEmptySquares() const;
     void printBoard() const;
 
     int getScore();

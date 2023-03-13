@@ -3,8 +3,7 @@
 //
 
 #include "Board.h"
-#include <iostream>
-#include <tuple>
+
 
 using namespace std;
 
@@ -21,7 +20,6 @@ Board::Board(int dimensions){
             board[i][j] = 0;
         }
     }
-
 }
 
 Board::~Board(){
@@ -32,17 +30,14 @@ Board::~Board(){
 }
 
 void Board::initBoard() {
-    int* rSquare1 = generateTilePos();
-    int* rSquare2 = generateTilePos();
+    vector<int> rSquare1 = generateTilePos();
+    vector<int> rSquare2 = generateTilePos();
 
     while(rSquare1[0] == rSquare2[0] && rSquare1[1] == rSquare2[1]){
         rSquare1 = generateTilePos();
     }
     board[rSquare1[0]][rSquare1[1]] = generateTileValue();
     board[rSquare2[0]][rSquare2[1]] = generateTileValue();
-
-    delete[] rSquare1;
-    delete[] rSquare2;
 }
 
 int Board::generateTileValue() {
@@ -54,11 +49,20 @@ int Board::generateTileValue() {
     }
 }
 
-int* Board::generateTilePos() {
-    int randNum1 = rand() % boardSize;
-    int randNum2 = rand() % boardSize;
-    int* rPos = new int[2]{randNum1, randNum2};
+vector<int> Board::generateTilePos() {
+    vector<int> rPos;
+    rPos.push_back(rand() % boardSize);
+    rPos.push_back(rand() % boardSize);
     return rPos;
+}
+
+int** Board::getEmptySquares() const {
+
+//    for(int i=0; i < boardSize; i++){
+//        for(int j=0; j < boardSize; j++){
+//            if
+//        }
+//    }
 }
 
 void Board::printBoard() const {

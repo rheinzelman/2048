@@ -9,10 +9,20 @@
 C:/Users/Ray/CLionProjects/2048/Board.cpp
 Board.h
 C:/Users/Ray/CLionProjects/2048/Board.h
+
+C:/Users/Ray/CLionProjects/2048/Board.h
 iostream
 -
 tuple
 -
+vector
+-
 
+C:/Users/Ray/CLionProjects/2048/main.cpp
+iostream
+-
+ctime
+-
+Board.h
 C:/Users/Ray/CLionProjects/2048/Board.h
 
