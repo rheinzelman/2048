@@ -8,7 +8,7 @@ int main() {
     // set time seed
     srand(time(NULL));
 
-    Game game("Ray", 3);
+    Game game("Ray", 4);
     game.startGame();
 
     return 0;

@@ -17,10 +17,8 @@ public:
     ~Board();
 
     void initBoard();
-    int generateTileValue();
-    std::vector<int> generateTilePos();
+    bool generateTile();
     void makeMove(Direction dir);
-    bool checkCombine(int x, int y, Direction direction) const;
     int** getEmptySquares() const;
     std::vector<std::vector<int>> getPossibleCombos() const;
     void printBoard() const;
@@ -37,6 +35,10 @@ private:
     int score;
     int moveCount;
     int tileGenProbability; // number between 1-100 used to determine likelihood of spawning a 4
+    int generateTileValue();
+    std::vector<int> generateTilePos();
+    bool checkCombine(int x, int y, Direction direction) const;
+
 };
 
 

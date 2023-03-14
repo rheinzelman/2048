@@ -138,6 +138,17 @@ vector<int> Board::generateTilePos() {
     return rPos;
 }
 
+bool Board::generateTile(){
+    if(!sizeof(getEmptySquares()) == 0){
+        vector<int> pos = generateTilePos();
+        int value = generateTileValue();
+        while(board[pos[0]][pos[1]] != 0){
+            pos = generateTilePos();
+        }
+        board[pos[0]][pos[1]] = value;
+    }
+}
+
 int** Board::getEmptySquares() const {
     int numEmptySquares = 0;
     for(int i=0; i < boardSize; i++){

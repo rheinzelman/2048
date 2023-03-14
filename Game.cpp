@@ -13,7 +13,29 @@ Game::Game(string playerName, int boardSize) : board(boardSize){
 
 void Game::startGame() {
     while(!isGameOver()){
+        board.printBoard();
+        pollMove();
+        board.generateTile();
+    }
+}
 
+void Game::pollMove(){
+    cout << "Enter a move (up, down, left, right): ";
+    string move;
+    cin >> move;
+    if(move == "up"){
+        board.makeMove(Direction::up);
+    } else if(move == "right"){
+        board.makeMove(Direction::right);
+    } else if(move == "down"){
+        board.makeMove(Direction::down);
+    } else if(move == "left"){
+        board.makeMove(Direction::left);
+    } else if(move=="c"){
+        vector<vector<int>> possibleCombos = board.getPossibleCombos();
+        for(int i=0; i<board.getBoardSize();i++){
+            cout << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " : " << possibleCombos[i][2] << ", " << possibleCombos[i][3];
+        }
     }
 }
 
