@@ -139,7 +139,7 @@ vector<int> Board::generateTilePos() {
 }
 
 bool Board::generateTile(){
-    if(!sizeof(getEmptySquares()) == 0){
+    if(getNumEmptySquares() != 0){
         vector<int> pos = generateTilePos();
         int value = generateTileValue();
         while(board[pos[0]][pos[1]] != 0){
@@ -149,7 +149,7 @@ bool Board::generateTile(){
     }
 }
 
-int** Board::getEmptySquares() const {
+int Board::getNumEmptySquares() const {
     int numEmptySquares = 0;
     for(int i=0; i < boardSize; i++){
         for(int j=0; j < boardSize; j++){
@@ -158,6 +158,11 @@ int** Board::getEmptySquares() const {
             }
         }
     }
+    return numEmptySquares;
+}
+
+int** Board::getEmptySquares() const {
+    int numEmptySquares = getNumEmptySquares();
     int** emptySquares = new int*[numEmptySquares];
     for(int i=0; i < numEmptySquares; i++){
         emptySquares[i] = new int[2];
@@ -347,7 +352,11 @@ void Board::printBoard() const {
         }
         cout << endl;
     }
+}
 
+int Board::getNumPossibleCombos() const {
+    vector<vector<int>> possibleCombos = getPossibleCombos();
+    return possibleCombos.size();
 }
 
 int Board::getBoardSize() {

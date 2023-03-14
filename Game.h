@@ -7,6 +7,8 @@
 
 #include "Board.h"
 #include<string>
+#include<iostream>
+#include<limits>
 
 class Game {
 public:
@@ -19,7 +21,7 @@ public:
     int getMoveCount();
     void addMoveCount();
     bool isGameOver();
-    void pollMove();
+    bool pollMove();
 
 private:
     std::string player;

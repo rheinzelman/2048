@@ -20,7 +20,9 @@ public:
     bool generateTile();
     void makeMove(Direction dir);
     int** getEmptySquares() const;
+    int getNumEmptySquares() const;
     std::vector<std::vector<int>> getPossibleCombos() const;
+    int getNumPossibleCombos() const;
     void printBoard() const;
 
     //dev

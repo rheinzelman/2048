@@ -14,15 +14,19 @@ Game::Game(string playerName, int boardSize) : board(boardSize){
 void Game::startGame() {
     while(!isGameOver()){
         board.printBoard();
+        cout << board.getNumEmptySquares() << ", " << board.getNumPossibleCombos() << endl;
         pollMove();
         board.generateTile();
     }
 }
 
-void Game::pollMove(){
-    cout << "Enter a move (up, down, left, right): ";
+bool Game::pollMove(){
     string move;
-    cin >> move;
+    while(cout << "Enter a move (up, down, left, right): " && !(cin >> move) || (move != "up" && move != "down" && move != "left" && move != "right" && move != "c")){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input, try again\n";
+    }
     if(move == "up"){
         board.makeMove(Direction::up);
     } else if(move == "right"){
@@ -56,8 +60,7 @@ void Game::addMoveCount() {
 }
 
 bool Game::isGameOver() {
-    vector<vector<int>> possibleCombos = board.getPossibleCombos();
-    if(possibleCombos.empty() && board.getEmptySquares() == 0){
+    if(board.getNumEmptySquares() == 0 && board.getNumPossibleCombos() == 0){
         return true;
     } else{
         return false;
