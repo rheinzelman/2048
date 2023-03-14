@@ -12,7 +12,9 @@ Game::Game(string playerName, int boardSize) : board(boardSize){
 }
 
 void Game::startGame() {
+    while(!isGameOver()){
 
+    }
 }
 
 int Game::getScore() {
@@ -32,5 +34,10 @@ void Game::addMoveCount() {
 }
 
 bool Game::isGameOver() {
-
+    vector<vector<int>> possibleCombos = board.getPossibleCombos();
+    if(possibleCombos.empty() && board.getEmptySquares() == 0){
+        return true;
+    } else{
+        return false;
+    }
 }

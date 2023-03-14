@@ -19,7 +19,7 @@ public:
     void initBoard();
     int generateTileValue();
     std::vector<int> generateTilePos();
-    bool makeMove(Direction direction);
+    void makeMove(Direction dir);
     bool checkCombine(int x, int y, Direction direction) const;
     int** getEmptySquares() const;
     std::vector<std::vector<int>> getPossibleCombos() const;

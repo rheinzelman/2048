@@ -48,24 +48,88 @@ int Board::generateTileValue() {
         return 4;
     }
 }
-
-bool Board::makeMove(Direction direction) {
-    int** emptySquaresPre = getEmptySquares();
-    switch(direction){
+// for each tile
+// move in the direction until it hits the edge or another tile
+void Board::makeMove(Direction direction) {
+    // Traverse the board in the given direction
+    switch (direction) {
         case Direction::up:
-            break;
-        case Direction::right:
+            for (int j = 0; j < boardSize; j++) { // Column-wise traversal
+                int i = 0;
+                while (i < boardSize - 1) { // Traverse each row
+                    if (board[i][j] == 0) { // If current element is 0
+                        int k = i + 1;
+                        while (k < boardSize && board[k][j] == 0) // Find the next non-zero element
+                            k++;
+                        if (k < boardSize) { // Swap the current and next non-zero elements
+                            board[i][j] = board[k][j];
+                            board[k][j] = 0;
+                            i--; // Move back to check if there are any more 0's before the swapped element
+                        }
+                    }
+                    i++;
+                }
+            }
             break;
         case Direction::down:
+            for (int j = 0; j < boardSize; j++) { // Column-wise traversal
+                int i = boardSize - 1;
+                while (i > 0) { // Traverse each row
+                    if (board[i][j] == 0) { // If current element is 0
+                        int k = i - 1;
+                        while (k >= 0 && board[k][j] == 0) // Find the next non-zero element
+                            k--;
+                        if (k >= 0) { // Swap the current and next non-zero elements
+                            board[i][j] = board[k][j];
+                            board[k][j] = 0;
+                            i++; // Move back to check if there are any more 0's before the swapped element
+                        }
+                    }
+                    i--;
+                }
+            }
             break;
         case Direction::left:
+            for (int i = 0; i < boardSize; i++) { // Row-wise traversal
+                int j = 0;
+                while (j < boardSize - 1) { // Traverse each column
+                    if (board[i][j] == 0) { // If current element is 0
+                        int k = j + 1;
+                        while (k < boardSize && board[i][k] == 0) // Find the next non-zero element
+                            k++;
+                        if (k < boardSize) { // Swap the current and next non-zero elements
+                            board[i][j] = board[i][k];
+                            board[i][k] = 0;
+                            j--; // Move back to check if there are any more 0's before the swapped element
+                        }
+                    }
+                    j++;
+                }
+            }
+            break;
+        case Direction::right:
+            for (int i = 0; i < boardSize; i++) { // Row-wise traversal
+                int j = boardSize - 1;
+                while (j > 0) { // Traverse each column
+                    if (board[i][j] == 0) { // If current element is 0
+                        int k = j - 1;
+                        while (k >= 0 && board[i][k] == 0) //
+                            k--;
+                        if (k >= 0) { // Swap the current and next non-zero elements
+                            board[i][j] = board[i][k];
+                            board[i][k] = 0;
+                            j++; // Move back to check if there are any more 0's before the swapped element
+                        }
+                    }
+                    j--;
+                }
+            }
+            break;
+        default:
+            cout << "Invalid direction!" << endl;
             break;
     }
-    int** emptySquares = getEmptySquares();
-    return true;
 }
-
-
 
 vector<int> Board::generateTilePos() {
     vector<int> rPos;
@@ -254,12 +318,14 @@ vector<vector<int>> Board::getPossibleCombos() const {
 }
 
 void Board::printBoard() const {
+    cout << "========" << "\n";
     for(int i=0; i < boardSize; i++){
         for(int j=0; j < boardSize; j++){
             cout << board[i][j] << " ";
         }
         cout << endl;
     }
+
 }
 
 int Board::getBoardSize() {
