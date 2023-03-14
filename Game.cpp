@@ -33,8 +33,8 @@ void Game::pollMove(){
         board.makeMove(Direction::left);
     } else if(move=="c"){
         vector<vector<int>> possibleCombos = board.getPossibleCombos();
-        for(int i=0; i<board.getBoardSize();i++){
-            cout << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " : " << possibleCombos[i][2] << ", " << possibleCombos[i][3];
+        for(int i=0; i<possibleCombos.size();i++){
+            cout << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " : " << possibleCombos[i][2] << ", " << possibleCombos[i][3] << endl;
         }
     }
 }

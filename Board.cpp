@@ -325,6 +325,17 @@ vector<vector<int>> Board::getPossibleCombos() const {
             }
         }
     }
+    if(possibleCombos.size() >= 1){
+        for(int i=0; i<possibleCombos.size();i++){
+            for(int j=i+1;j<possibleCombos.size();j++){
+                if((possibleCombos[i][0] == possibleCombos[j][2]) && (possibleCombos[i][1] == possibleCombos[j][3])){
+                    possibleCombos.erase(possibleCombos.begin()+j);
+                }
+            }
+        }
+    }
+
+
     return possibleCombos;
 }
 
