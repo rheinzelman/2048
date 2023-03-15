@@ -157,15 +157,10 @@ int Board::combineTiles(Direction direction) {
             }
             break;
         case Direction::down:
-            // for each column
             for(int i=0; i<boardSize; i++){
-                // for each row in a given column
                 for(int j=boardSize-1; j>0;j--){
-                    // if the tile is equal to the tile above it
                     if(board[j][i] == board[j-1][i]){
-                        // make the first tile *2
                         board[j][i] = board[j][i]*2;
-                        // for each tile above the tile just multiplied
                         for(int k=j-1; k>=0; k--){
                             if(k>0){
                                 board[k][i] = board[k-1][i];
@@ -178,10 +173,36 @@ int Board::combineTiles(Direction direction) {
             }
             break;
         case Direction::left:
-
+            for(int i=0; i<boardSize; i++){
+                for(int j=0; j<boardSize-1;j++){
+                    if(board[i][j] == board[i][j+1]){
+                        board[i][j] = board[i][j]*2;
+                        for(int k=j+1; k<boardSize; k++){
+                            if(k<boardSize-1){
+                                board[i][k] = board[i][k+1];
+                            } else {
+                                board[i][k] = 0;
+                            }
+                        }
+                    }
+                }
+            }
             break;
         case Direction::right:
-
+            for(int i=0; i<boardSize; i++){
+                for(int j=boardSize-1; j>0;j--){
+                    if(board[i][j] == board[i-1][j]){
+                        board[i][j] = board[i][j]*2;
+                        for(int k=j-1; k>=0; k--){
+                            if(k>0){
+                                board[i][k] = board[i][k-1];
+                            } else {
+                                board[i][k] = 0;
+                            }
+                        }
+                    }
+                }
+            }
             break;
     }
 }
@@ -433,10 +454,10 @@ int Board::getBoardSize() {
 
 void Board::setBoard() {
     int newBoard[4][4] = {
-    {2, 0, 0, 4},
-    {2, 2, 4, 4},
     {2, 2, 2, 2},
-    {2, 0, 2, 2}
+    {0, 2, 4, 4},
+    {0, 2, 2, 0},
+    {2, 2, 4, 4}
     };
     for(int i=0; i<boardSize; i++){
         for(int j=0; j<boardSize; j++){
