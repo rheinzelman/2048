@@ -133,45 +133,71 @@ int Board::makeMove(Direction direction) {
     return 0;
 }
 
+// go to {direction} most tile
+// if the one in the opposite direction is the same tile, put *2 on the initial comparison tile, put zero on the other tile
+// shift all other tiles in the same line in the direction
+// repeat until the end is reached
+
 int Board::combineTiles(Direction direction) {
-    vector<vector<int>> possibleCombos = getPossibleCombos();
     switch(direction){
         case Direction::up:
-            for(int i=0; i<possibleCombos.size();i++){
-                if(possibleCombos[i][0] - possibleCombos[i][2] == 1){
-                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
-                    for(int j=possibleCombos[i][0]; j<boardSize-1; j++){
-                        board[j][possibleCombos[i][1]] = board[j+1][possibleCombos[i][1]];
-                        if(j == boardSize-2){
-                            board[j][possibleCombos[i][1]] = 0;
+            for(int i=0; i<boardSize; i++){
+                for(int j=0; j<boardSize-1;j++){
+                    if(board[j][i] == board[j+1][i]){
+                        board[j][i] = board[j][i]*2;
+                        for(int k=j+1; k<boardSize; k++){
+                            if(k<boardSize-1){
+                                board[k][i] = board[k+1][i];
+                            } else {
+                                board[k][i] = 0;
+                            }
                         }
                     }
                 }
             }
             break;
         case Direction::down:
-            for(int i=0; i<possibleCombos.size();i++){
-                if(possibleCombos[i][2] - possibleCombos[i][0] == 1){
-                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
+            // for each column
+            for(int i=0; i<boardSize; i++){
+                // for each row in a given column
+                for(int j=boardSize-1; j>0;j--){
+                    // if the tile is equal to the tile above it
+                    if(board[j][i] == board[j-1][i]){
+                        // make the first tile *2
+                        board[j][i] = board[j][i]*2;
+                        // for each tile above the tile just multiplied
+                        for(int k=j-1; k>=0; k--){
+                            if(k>0){
+                                board[k][i] = board[k-1][i];
+                            } else {
+                                board[k][i] = 0;
+                            }
+                        }
+                    }
                 }
             }
             break;
         case Direction::left:
-            for(int i=0; i<possibleCombos.size();i++){
-                if(possibleCombos[i][1] - possibleCombos[i][3] == 1){
-                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
-                }
-            }
+
             break;
         case Direction::right:
-            for(int i=0; i<possibleCombos.size();i++){
-                if(possibleCombos[i][3] - possibleCombos[i][1] == 1){
-                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
-                }
-            }
+
             break;
     }
 }
+
+//for(int i=0; i<possibleCombos.size();i++){
+//if(possibleCombos[i][0] - possibleCombos[i][2] == 1 && (possibleCombos[i][0] != previouslyCombined[0]) && (possibleCombos[i][1] != previouslyCombined[1])){
+//board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
+//previouslyCombined = {possibleCombos[i][0], possibleCombos[i][1]};
+//for(int j=possibleCombos[i][0]; j<=boardSize-1; j++){
+//board[j][possibleCombos[i][1]] = board[j+1][possibleCombos[i][1]];
+//if(j == boardSize-1){
+//board[j][possibleCombos[i][1]] = 0;
+//}
+//}
+//}
+//}
 
 vector<int> Board::generateTilePos() {
     vector<int> rPos;
@@ -406,14 +432,15 @@ int Board::getBoardSize() {
 }
 
 void Board::setBoard() {
-//    for(int i=0; i<boardSize; i++){
-//        for(int j=0; j<boardSize; j++){
-//            board[i][j] = newBoard[i][j];
-//        }
-//    }
-
-    board[0][0] = 2;
-    board[0][1] = 2;
-    board[1][1] = 2;
-    board[1][2] = 2;
+    int newBoard[4][4] = {
+    {2, 0, 0, 4},
+    {2, 2, 4, 4},
+    {2, 2, 2, 2},
+    {2, 0, 2, 2}
+    };
+    for(int i=0; i<boardSize; i++){
+        for(int j=0; j<boardSize; j++){
+            board[i][j] = newBoard[i][j];
+        }
+    }
 }

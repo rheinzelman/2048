@@ -12,13 +12,15 @@ Game::Game(string playerName, int boardSize) : board(boardSize){
 }
 
 void Game::startGame() {
+    board.setBoard();
     while(!isGameOver()){
         vector<vector<int>> possibleCombos = board.getPossibleCombos();
         board.printBoard();
-        for(int i=0; i<possibleCombos.size(); i++){
-            cout << "Combo:\n" << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " -> " << possibleCombos[i][2] << ", " << possibleCombos[i][3] << endl;
-        }
+//        for(int i=0; i<possibleCombos.size(); i++){
+//            cout << "Combo:\n" << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " -> " << possibleCombos[i][2] << ", " << possibleCombos[i][3] << endl;
+//        }
         Direction moveDirection = pollMove();
+        //board.printBoard();
         board.combineTiles(moveDirection);
         board.generateTile();
     }
