@@ -18,12 +18,13 @@ public:
 
     void initBoard();
     bool generateTile();
-    void makeMove(Direction dir);
+    int makeMove(Direction dir);
     int** getEmptySquares() const;
     int getNumEmptySquares() const;
     std::vector<std::vector<int>> getPossibleCombos() const;
     int getNumPossibleCombos() const;
     void printBoard() const;
+    int combineTiles(Direction direction);
 
     //dev
     void setBoard();

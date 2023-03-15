@@ -21,7 +21,7 @@ public:
     int getMoveCount();
     void addMoveCount();
     bool isGameOver();
-    bool pollMove();
+    Direction pollMove();
 
 private:
     std::string player;

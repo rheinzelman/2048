@@ -50,7 +50,7 @@ int Board::generateTileValue() {
 }
 // for each tile
 // move in the direction until it hits the edge or another tile
-void Board::makeMove(Direction direction) {
+int Board::makeMove(Direction direction) {
     // Traverse the board in the given direction
     switch (direction) {
         case Direction::up:
@@ -127,6 +127,48 @@ void Board::makeMove(Direction direction) {
             break;
         default:
             cout << "Invalid direction!" << endl;
+            break;
+    }
+
+    return 0;
+}
+
+int Board::combineTiles(Direction direction) {
+    vector<vector<int>> possibleCombos = getPossibleCombos();
+    switch(direction){
+        case Direction::up:
+            for(int i=0; i<possibleCombos.size();i++){
+                if(possibleCombos[i][0] - possibleCombos[i][2] == 1){
+                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
+                    for(int j=possibleCombos[i][0]; j<boardSize-1; j++){
+                        board[j][possibleCombos[i][1]] = board[j+1][possibleCombos[i][1]];
+                        if(j == boardSize-2){
+                            board[j][possibleCombos[i][1]] = 0;
+                        }
+                    }
+                }
+            }
+            break;
+        case Direction::down:
+            for(int i=0; i<possibleCombos.size();i++){
+                if(possibleCombos[i][2] - possibleCombos[i][0] == 1){
+                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
+                }
+            }
+            break;
+        case Direction::left:
+            for(int i=0; i<possibleCombos.size();i++){
+                if(possibleCombos[i][1] - possibleCombos[i][3] == 1){
+                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
+                }
+            }
+            break;
+        case Direction::right:
+            for(int i=0; i<possibleCombos.size();i++){
+                if(possibleCombos[i][3] - possibleCombos[i][1] == 1){
+                    board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
+                }
+            }
             break;
     }
 }
@@ -330,15 +372,15 @@ vector<vector<int>> Board::getPossibleCombos() const {
             }
         }
     }
-    if(possibleCombos.size() >= 1){
-        for(int i=0; i<possibleCombos.size();i++){
-            for(int j=i+1;j<possibleCombos.size();j++){
-                if((possibleCombos[i][0] == possibleCombos[j][2]) && (possibleCombos[i][1] == possibleCombos[j][3])){
-                    possibleCombos.erase(possibleCombos.begin()+j);
-                }
-            }
-        }
-    }
+//    if(possibleCombos.size() >= 1){
+//        for(int i=0; i<possibleCombos.size();i++){
+//            for(int j=i+1;j<possibleCombos.size();j++){
+//                if((possibleCombos[i][0] == possibleCombos[j][2]) && (possibleCombos[i][1] == possibleCombos[j][3])){
+//                    possibleCombos.erase(possibleCombos.begin()+j);
+//                }
+//            }
+//        }
+//    }
 
 
     return possibleCombos;
@@ -356,7 +398,7 @@ void Board::printBoard() const {
 
 int Board::getNumPossibleCombos() const {
     vector<vector<int>> possibleCombos = getPossibleCombos();
-    return possibleCombos.size();
+    return possibleCombos.size()/2;
 }
 
 int Board::getBoardSize() {

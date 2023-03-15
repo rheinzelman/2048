@@ -13,34 +13,48 @@ Game::Game(string playerName, int boardSize) : board(boardSize){
 
 void Game::startGame() {
     while(!isGameOver()){
+        vector<vector<int>> possibleCombos = board.getPossibleCombos();
         board.printBoard();
-        cout << board.getNumEmptySquares() << ", " << board.getNumPossibleCombos() << endl;
-        pollMove();
+        for(int i=0; i<possibleCombos.size(); i++){
+            cout << "Combo:\n" << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " -> " << possibleCombos[i][2] << ", " << possibleCombos[i][3] << endl;
+        }
+        Direction moveDirection = pollMove();
+        board.combineTiles(moveDirection);
         board.generateTile();
     }
 }
 
-bool Game::pollMove(){
+Direction Game::pollMove(){
     string move;
     while(cout << "Enter a move (up, down, left, right): " && !(cin >> move) || (move != "up" && move != "down" && move != "left" && move != "right" && move != "c")){
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "Invalid input, try again\n";
     }
+    Direction moveDirection;
     if(move == "up"){
         board.makeMove(Direction::up);
+        return(Direction::up);
     } else if(move == "right"){
         board.makeMove(Direction::right);
+        return(Direction::right);
+
     } else if(move == "down"){
         board.makeMove(Direction::down);
+        return(Direction::down);
+
     } else if(move == "left"){
         board.makeMove(Direction::left);
+        return(Direction::left);
+
     } else if(move=="c"){
         vector<vector<int>> possibleCombos = board.getPossibleCombos();
         for(int i=0; i<possibleCombos.size();i++){
             cout << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " : " << possibleCombos[i][2] << ", " << possibleCombos[i][3] << endl;
         }
+        return(Direction::up);
     }
+
 }
 
 int Game::getScore() {
