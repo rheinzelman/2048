@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "2048"
+			"path" : "2048.exe"
+		},
+		{
+			"path" : "2048.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,21 +38,13 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -fcolor-diagnostics"
+					"fragment" : "-g  "
 				},
 				{
 					"fragment" : "-std=gnu++14"
 				}
 			],
 			"language" : "CXX",
-			"languageStandard" : 
-			{
-				"backtraces" : 
-				[
-					1
-				],
-				"standard" : "14"
-			},
 			"sourceIndexes" : 
 			[
 				0,
@@ -70,12 +65,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "2048",
-	"nameOnDisk" : "2048",
+	"nameOnDisk" : "2048.exe",
 	"paths" : 
 	{
 		"build" : ".",

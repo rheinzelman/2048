@@ -133,18 +133,15 @@ int Board::makeMove(Direction direction) {
     return 0;
 }
 
-// go to {direction} most tile
-// if the one in the opposite direction is the same tile, put *2 on the initial comparison tile, put zero on the other tile
-// shift all other tiles in the same line in the direction
-// repeat until the end is reached
-
 int Board::combineTiles(Direction direction) {
+    int additionalScore = 0;
     switch(direction){
         case Direction::up:
             for(int i=0; i<boardSize; i++){
                 for(int j=0; j<boardSize-1;j++){
                     if(board[j][i] == board[j+1][i]){
                         board[j][i] = board[j][i]*2;
+                        additionalScore += board[j][i];
                         for(int k=j+1; k<boardSize; k++){
                             if(k<boardSize-1){
                                 board[k][i] = board[k+1][i];
@@ -161,6 +158,7 @@ int Board::combineTiles(Direction direction) {
                 for(int j=boardSize-1; j>0;j--){
                     if(board[j][i] == board[j-1][i]){
                         board[j][i] = board[j][i]*2;
+                        additionalScore += board[j][i];
                         for(int k=j-1; k>=0; k--){
                             if(k>0){
                                 board[k][i] = board[k-1][i];
@@ -177,6 +175,7 @@ int Board::combineTiles(Direction direction) {
                 for(int j=0; j<boardSize-1;j++){
                     if(board[i][j] == board[i][j+1]){
                         board[i][j] = board[i][j]*2;
+                        additionalScore += board[i][j];
                         for(int k=j+1; k<boardSize; k++){
                             if(k<boardSize-1){
                                 board[i][k] = board[i][k+1];
@@ -191,8 +190,9 @@ int Board::combineTiles(Direction direction) {
         case Direction::right:
             for(int i=0; i<boardSize; i++){
                 for(int j=boardSize-1; j>0;j--){
-                    if(board[i][j] == board[i-1][j]){
+                    if(board[i][j] == board[i][j-1]){
                         board[i][j] = board[i][j]*2;
+                        additionalScore += board[i][j];
                         for(int k=j-1; k>=0; k--){
                             if(k>0){
                                 board[i][k] = board[i][k-1];
@@ -205,20 +205,8 @@ int Board::combineTiles(Direction direction) {
             }
             break;
     }
+    return additionalScore;
 }
-
-//for(int i=0; i<possibleCombos.size();i++){
-//if(possibleCombos[i][0] - possibleCombos[i][2] == 1 && (possibleCombos[i][0] != previouslyCombined[0]) && (possibleCombos[i][1] != previouslyCombined[1])){
-//board[possibleCombos[i][2]][possibleCombos[i][3]] = board[possibleCombos[i][2]][possibleCombos[i][3]]*2;
-//previouslyCombined = {possibleCombos[i][0], possibleCombos[i][1]};
-//for(int j=possibleCombos[i][0]; j<=boardSize-1; j++){
-//board[j][possibleCombos[i][1]] = board[j+1][possibleCombos[i][1]];
-//if(j == boardSize-1){
-//board[j][possibleCombos[i][1]] = 0;
-//}
-//}
-//}
-//}
 
 vector<int> Board::generateTilePos() {
     vector<int> rPos;

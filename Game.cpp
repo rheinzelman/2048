@@ -9,19 +9,21 @@ using namespace std;
 Game::Game(string playerName, int boardSize) : board(boardSize){
     player = playerName;
     board.initBoard();
+    score = 0;
 }
 
 void Game::startGame() {
-    board.setBoard();
+    //board.setBoard();
     while(!isGameOver()){
         vector<vector<int>> possibleCombos = board.getPossibleCombos();
+        cout << "Score: " << getScore() << endl;
         board.printBoard();
 //        for(int i=0; i<possibleCombos.size(); i++){
 //            cout << "Combo:\n" << possibleCombos[i][0] << ", " << possibleCombos[i][1] << " -> " << possibleCombos[i][2] << ", " << possibleCombos[i][3] << endl;
 //        }
         Direction moveDirection = pollMove();
-        //board.printBoard();
-        board.combineTiles(moveDirection);
+        int additionalScore = board.combineTiles(moveDirection);
+        addScore(additionalScore);
         board.generateTile();
     }
 }

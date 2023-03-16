@@ -1,12 +1,11 @@
 file(REMOVE_RECURSE
-  "2048"
+  "2048.exe"
+  "2048.exe.manifest"
   "2048.pdb"
-  "CMakeFiles/2048.dir/Board.cpp.o"
-  "CMakeFiles/2048.dir/Board.cpp.o.d"
-  "CMakeFiles/2048.dir/Game.cpp.o"
-  "CMakeFiles/2048.dir/Game.cpp.o.d"
-  "CMakeFiles/2048.dir/main.cpp.o"
-  "CMakeFiles/2048.dir/main.cpp.o.d"
+  "CMakeFiles/2048.dir/Board.cpp.obj"
+  "CMakeFiles/2048.dir/Game.cpp.obj"
+  "CMakeFiles/2048.dir/main.cpp.obj"
+  "lib2048.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

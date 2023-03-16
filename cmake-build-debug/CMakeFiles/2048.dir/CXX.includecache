@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Ray/CLionProjects/2048/Board.h
+iostream
+-
+tuple
+-
+vector
+-
+
+C:/Users/Ray/CLionProjects/2048/Game.cpp
+Game.h
+C:/Users/Ray/CLionProjects/2048/Game.h
+
+C:/Users/Ray/CLionProjects/2048/Game.h
+Board.h
+C:/Users/Ray/CLionProjects/2048/Board.h
+string
+-
+iostream
+-
+limits
+-
+
