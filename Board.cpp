@@ -208,6 +208,10 @@ int Board::combineTiles(Direction direction) {
     return additionalScore;
 }
 
+int** Board::getBoardState() const {
+    return board;
+}
+
 vector<int> Board::generateTilePos() {
     vector<int> rPos;
     rPos.push_back(rand() % boardSize);

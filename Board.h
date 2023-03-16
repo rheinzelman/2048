@@ -25,6 +25,7 @@ public:
     int getNumPossibleCombos() const;
     void printBoard() const;
     int combineTiles(Direction direction);
+    int** getBoardState() const;
 
     //dev
     void setBoard();
