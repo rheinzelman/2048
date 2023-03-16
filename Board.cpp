@@ -212,6 +212,17 @@ int** Board::getBoardState() const {
     return board;
 }
 
+bool Board::changedBoardState(int **initialState, int **finalState) const {
+    for(int i=0; i<boardSize; i++){
+        for(int j=0; j<boardSize; j++){
+            if(initialState[i][j] != finalState[i][j]){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 vector<int> Board::generateTilePos() {
     vector<int> rPos;
     rPos.push_back(rand() % boardSize);

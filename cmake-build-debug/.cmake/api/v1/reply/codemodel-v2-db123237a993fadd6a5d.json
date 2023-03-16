@@ -6,6 +6,7 @@
 			[
 				{
 					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.17"
@@ -38,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "2048::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-2048-Debug-1a1bf3da4c7afea621cf.json",
+					"jsonFile" : "target-2048-Debug-570f61b8ff361af206ae.json",
 					"name" : "2048",
 					"projectIndex" : 0
 				}
@@ -48,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Ray/CLionProjects/2048/cmake-build-debug",
-		"source" : "C:/Users/Ray/CLionProjects/2048"
+		"build" : "/Users/rheinzelman/CLionProjects/2048/cmake-build-debug",
+		"source" : "/Users/rheinzelman/CLionProjects/2048"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 0
+		"minor" : 4
 	}
 }

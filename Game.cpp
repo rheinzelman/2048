@@ -17,10 +17,14 @@ void Game::startGame() {
         vector<vector<int>> possibleCombos = board.getPossibleCombos();
         cout << "Score: " << getScore() << endl;
         board.printBoard();
+        int** initialBoard = board.getBoardState();
         Direction moveDirection = pollMove();
         int additionalScore = board.combineTiles(moveDirection);
+        int** finalBoard = board.getBoardState();
         addScore(additionalScore);
-        board.generateTile();
+        if(!board.changedBoardState(initialBoard, finalBoard)){
+            board.generateTile();
+        }
     }
 }
 
@@ -75,8 +79,10 @@ void Game::addMoveCount() {
 
 bool Game::isGameOver() {
     if(board.getNumEmptySquares() == 0){
-        if(board.getNumPossibleCombos())
-        return true;
+        if(board.getNumPossibleCombos()){
+            cout << "Game Over!" << endl;
+            return true;
+        }
     } else{
         return false;
     }

@@ -24,6 +24,7 @@ public:
     std::vector<std::vector<int>> getPossibleCombos() const;
     int getNumPossibleCombos() const;
     void printBoard() const;
+    bool changedBoardState(int ** initialState, int** finalState) const;
     int combineTiles(Direction direction);
     int** getBoardState() const;
 
